@@ -1,6 +1,16 @@
-langchain == 0.3.21
-langgraph == 0.3.16
-langchain-openai == 0.3.9
+fastapi 
+uvicorn  
 
-fastapi == 0.115.11
-uvicorn == 0.34.0
+langchain  
+langgraph
+langchain-openai 
+langchain-core
+
+openai
+httpx
+pandas
+psycopg2
+openpyxl
+langchain-google-genai
+google-genai
+python-dotenv

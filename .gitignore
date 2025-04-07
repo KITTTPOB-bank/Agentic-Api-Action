@@ -1,0 +1,4 @@
+*.env
+*project-cocktail
+*__pycache__
+*test.py

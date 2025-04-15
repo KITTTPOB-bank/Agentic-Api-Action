@@ -47,24 +47,26 @@ def call_process(tools : list , Meme: bool):
             api_key=GEMINI_KEY
         )
 
+        try:
+            response = llm_gemini.invoke(
+                [message],
+                generation_config=dict(response_modalities=["TEXT", "IMAGE"]),
+            )
+    
+            image_base64 = response.content[0].get("image_url").get("url").split(",")[-1]
 
+            image_data = base64.b64decode(image_base64)
 
-        response = llm_gemini.invoke(
-            [message],
-            generation_config=dict(response_modalities=["TEXT", "IMAGE"]),
-        )
- 
-        image_base64 = response.content[0].get("image_url").get("url").split(",")[-1]
+            folder_path = "generated_images"
+            os.makedirs(folder_path, exist_ok=True)
 
-        image_data = base64.b64decode(image_base64)
-
-        folder_path = "generated_images"
-        os.makedirs(folder_path, exist_ok=True)
-
-        filename = f"meme_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        file_path = os.path.join(folder_path, filename)
-        with open(file_path, "wb") as f:
-                f.write(image_data)
+            filename = f"meme_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+            file_path = os.path.join(folder_path, filename)
+            with open(file_path, "wb") as f:
+                    f.write(image_data)
+        except:
+            print("ไม่สามารถสร้างรูปภาพได้อาจเกิดจาก Key มีจำกัดการสร้าง")
+            return None
 
         return None
     

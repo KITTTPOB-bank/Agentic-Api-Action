@@ -1,4 +1,4 @@
-AGENTIC AI หาข้อมูลหุ้น
+AGENTIC AI หาข้อมูลหุ้น กองทุน คุยเศรษฐกิจ
 
 ```
 python -m venv project-Api

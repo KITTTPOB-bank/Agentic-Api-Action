@@ -1,16 +1,14 @@
 fastapi 
 uvicorn  
 
-langchain  
-langgraph
-langchain-openai 
-langchain-core
-
-openai
+langchain == 0.3.23  
+langgraph ==0.3.30
+langchain-openai == 0.3.12
+langchain-core == 0.3.51
+ 
+openai == 1.74.0
 httpx
-pandas
-psycopg2
-openpyxl
 langchain-google-genai
-google-genai
+ 
 python-dotenv
+yfinance

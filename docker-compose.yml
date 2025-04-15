@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  project_api:
+    restart: always
+    build: ./
+    ports:
+      - 8005:8050
+    volumes:
+      - ./:/app/
+    env_file:
+      - ./.env
+ 

@@ -5,13 +5,16 @@ from tool.generate_tool import create_tool
 from model.module import RequestMessage
 from langchain_core.messages import AIMessage, HumanMessage
 app = FastAPI()
+from fastapi.concurrency import run_in_threadpool
 
-
-async def call_system_flow(messages : list, meme: bool):
+ 
+async def call_system_flow(messages: list, meme: bool):
     tool = await create_tool()
-    responed = system_flow.call_process(tool , meme).invoke({"messages" : messages})
-    return responed["messages"][-1].content
-
+    workflow = system_flow.call_process(tool, meme)
+    
+    result = await run_in_threadpool(workflow.invoke, {"messages": messages})
+    
+    return result["messages"][-1].content
 
 @app.post("/request_chat")
 async def chat_action(chatmessages: RequestMessage):
